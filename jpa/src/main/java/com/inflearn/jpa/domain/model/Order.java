@@ -41,6 +41,14 @@ public class Order {
 
     private LocalDateTime orderDate;
 
+    public void placeMember(Member member) {
+        if (this.member != null) {
+            this.member.getOrders().remove(this);
+        }
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
     public void addOrderItem(OrderItem orderItem) {
         this.orderItems.add(orderItem);
         orderItem.placeOrder(this);
